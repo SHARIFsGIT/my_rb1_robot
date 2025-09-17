@@ -41,7 +41,23 @@ def generate_launch_description():
         output='screen'
     )
     
+    # ROS-Gazebo Bridge
+    bridge = Node(
+        package='ros_gz_bridge',
+        executable='parameter_bridge',
+        name='parameter_bridge',
+        arguments=[
+            '/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock',
+            '/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist',
+            '/tf@tf2_msgs/msg/TFMessage[ignition.msgs.Pose_V',
+            '/odom@nav_msgs/msg/Odometry[ignition.msgs.Odometry',
+            '/scan@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan'
+        ],
+        output='screen'
+    )
+    
     return LaunchDescription([
         robot_state_publisher,
-        spawn_entity
+        spawn_entity,
+        bridge
     ])
