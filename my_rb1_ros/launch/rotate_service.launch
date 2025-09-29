@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <node name="rotate_service_server" pkg="my_rb1_ros" type="rotate_service.py" output="screen"/>
+</launch>
